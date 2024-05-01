@@ -7,6 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,14 +20,14 @@ class SplashScreenActivity : AppCompatActivity() {
 
         //se declara la imagen como una variable
         //abriendo la pantalla con un click
-        val logoApp = findViewById<ImageView>(R.id.logoApp)
+        /*val logoApp = findViewById<ImageView>(R.id.logoApp)
         logoApp.setOnClickListener {
             val abrirPantallaLogin = Intent (this, LoginSignupActivity::class.java)
             abrirPantallaLogin.putExtra("nombre", "Jessica")
             abrirPantallaLogin.putExtra("apellido", "Solar")
             abrirPantallaLogin.putExtra("acepto_TyC", false)
             startActivity(abrirPantallaLogin)
-        }
+        }*/
 
 
 
@@ -34,6 +37,15 @@ class SplashScreenActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        lifecycleScope.launch {
+            delay(2000)
+            val abrirPantallaLogin = Intent(baseContext, LoginSignupActivity::class.java)
+            abrirPantallaLogin.putExtra("nombre", "Jessica")
+            abrirPantallaLogin.putExtra("apellido", "Solar")
+            abrirPantallaLogin.putExtra("acepto_TyC", false)
+            startActivity(abrirPantallaLogin)
         }
     }
 }

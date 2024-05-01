@@ -26,7 +26,7 @@
         android:id="@+id/textView"
         android:layout_width="306dp"
         android:layout_height="38dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="400dp"
         android:fontFamily="@font/jua"
         android:text="@string/texto_bienvenida_login"
         android:textColor="@color/blanco"
@@ -34,11 +34,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.09" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_sign_up"
         android:layout_width="315dp"
         android:layout_height="69dp"
         style="@style/boton_celeste"

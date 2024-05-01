@@ -4,104 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="@drawable/fondo_avion"
     tools:context=".SignupPage">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="234dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="308dp"
-        android:background="@color/blanco"
-        android:fontFamily="@font/jua"
-        android:hint="hint"
-        android:text="Reingresar contraseña"
-        android:textColor="@color/material_dynamic_neutral_variant70"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/jua"
-        android:text="Reingresar contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        tools:layout_editor_absoluteY="509dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="336dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/blanco"
-        android:fontFamily="@font/jua"
-        android:hint="hint"
-        android:text="Ingresar Email"
-        android:textColor="@color/material_dynamic_neutral_variant70"
-        app:layout_constraintEnd_toEndOf="@+id/textInputEditText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textInputEditText"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/jua"
-        android:text="Contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        tools:layout_editor_absoluteY="433dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="310dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="232dp"
-        android:background="@color/blanco"
-        android:fontFamily="@font/jua"
-        android:hint="hint"
-        android:text="Ingresar contraseña"
-        android:textColor="@color/material_dynamic_neutral_variant70"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.316"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/jua"
-        android:text="Email"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="350dp" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText"
-        android:layout_width="342dp"
-        android:layout_height="38dp"
-        android:background="@color/blanco"
-        android:fontFamily="@font/jua"
-        android:hint="hint"
-        android:text="Ingresar apellido"
-        android:textColor="@color/material_dynamic_neutral_variant70"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="292dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/jua"
-        android:text="Apellido"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        tools:layout_editor_absoluteY="276dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -117,31 +22,102 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/jua"
-        android:text="Nombre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="202dp" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        android:padding="30dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        <TextView
+            android:id="@+id/textView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/jua"
+            android:text="Nombre"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/campo_ingresar"
+            android:hint="Ingresar nombre" />
+
+        <TextView
+            android:id="@+id/textView_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jua"
+            android:text="Apellido" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/campo_ingresar"
+            android:hint="Ingresar apellido"/>
+
+        <TextView
+            android:id="@+id/textView_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jua"
+            android:text="Email" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/campo_ingresar"
+            android:hint="Ingresar Email"
+            android:textColor="@color/material_dynamic_neutral_variant70" />
+
+        <TextView
+            android:id="@+id/textView_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jua"
+            android:text="Contraseña" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/campo_ingresar"
+                android:hint="Ingresar contraseña"
+                android:textColor="@color/material_dynamic_neutral_variant70" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView_reenter_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jua"
+            android:text="Reingresar contraseña" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="false"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/campo_ingresar"
+                android:hint="Reingresar contraseña" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_home"
         style="@style/boton_celeste"
         android:layout_width="315dp"
-        android:layout_height="69dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="20dp"
@@ -149,35 +125,21 @@
         android:fontFamily="@font/jua"
         android:text="Crear Cuenta"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintBottom_toTopOf="@+id/textView_login" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jua"
+        android:layout_marginBottom="20dp"
         android:text="Ya tienes una cuenta??"
         android:textColor="@color/azultexto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.844" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="336dp"
-        android:layout_height="44dp"
-        android:background="@color/blanco"
-        android:fontFamily="@font/jua"
-        android:hint="hint"
-        android:text="Ingresar nombre"
-        android:textColor="@color/material_dynamic_neutral_variant70"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="218dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

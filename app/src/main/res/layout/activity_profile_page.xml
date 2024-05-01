@@ -8,7 +8,7 @@
     tools:context=".ProfilePage">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView_login"
         android:layout_width="245dp"
         android:layout_height="29dp"
         android:layout_marginBottom="60dp"
