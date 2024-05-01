@@ -11,4 +11,5 @@
     <string name="olvidaste_contrasena">Olvidaste tu contraseña?</string>
     <string name="btn_login">Login</string>
     <string name="txt_crear_cuenta">Crear una nueva cuenta</string>
+    <string name="txt_registrarse">Registrarse y empezar a transferir</string>
 </resources>
