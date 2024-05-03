@@ -5,4 +5,9 @@
         <item name="android:fontFamily">@font/jua</item>
         <item name="android:textColor">@color/blanco</item>
     </style>
+
+    <style name="texto_usuario">
+        <item name="android:fontFamily">@font/jua</item>
+        <item name="android:textColor">@color/negro</item>
+    </style>
 </resources>

@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_login).setOnClickListener {
             startActivity(Intent(this, HomePage::class.java))
         }
-        findViewById<TextView>(R.id.textView_login).setOnClickListener {
+        findViewById<TextView>(R.id.textView_ultimos).setOnClickListener {
             startActivity(Intent(this, SignupPage::class.java))
         }
     }

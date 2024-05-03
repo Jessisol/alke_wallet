@@ -1,7 +1,6 @@
 package solar.jessica.alkewallet
 
 import android.content.Intent
-import android.net.wifi.hotspot2.pps.HomeSp
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -23,7 +22,7 @@ class SignupPage : AppCompatActivity() {
         findViewById<Button>(R.id.button_home).setOnClickListener {
             startActivity(Intent(this, HomePage::class.java))
         }
-        findViewById<TextView>(R.id.textView_login).setOnClickListener {
+        findViewById<TextView>(R.id.textView_ultimos).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }

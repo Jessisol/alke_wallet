@@ -127,10 +127,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textView_login" />
+        app:layout_constraintBottom_toTopOf="@+id/textView_ultimos" />
 
     <TextView
-        android:id="@+id/textView_login"
+        android:id="@+id/textView_ultimos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jua"

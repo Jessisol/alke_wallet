@@ -8,7 +8,7 @@
     tools:context=".HomePageEmptyCase">
 
     <TextView
-        android:id="@+id/textView_login"
+        android:id="@+id/textView_ultimos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="144dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
     <TextView
-        android:id="@+id/textView_login"
+        android:id="@+id/textView_ultimos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="376dp"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_login"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ultimos"
         app:layout_constraintVertical_bias="0.297"
         app:srcCompat="@drawable/empty_illustration" />
 
