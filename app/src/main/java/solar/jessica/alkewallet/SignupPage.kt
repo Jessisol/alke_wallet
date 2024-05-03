@@ -21,7 +21,7 @@ class SignupPage : AppCompatActivity() {
             insets
         }
         findViewById<Button>(R.id.button_home).setOnClickListener {
-            startActivity(Intent(this, HomePageEmptyCase::class.java))
+            startActivity(Intent(this, HomePage::class.java))
         }
         findViewById<TextView>(R.id.textView_login).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))

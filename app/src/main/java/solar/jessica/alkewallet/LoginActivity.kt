@@ -1,6 +1,9 @@
 package solar.jessica.alkewallet
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,12 @@ class LoginActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        findViewById<Button>(R.id.button_login).setOnClickListener {
+            startActivity(Intent(this, HomePage::class.java))
+        }
+        findViewById<TextView>(R.id.textView_login).setOnClickListener {
+            startActivity(Intent(this, SignupPage::class.java))
         }
     }
 }

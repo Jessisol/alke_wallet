@@ -46,6 +46,7 @@ class SplashScreenActivity : AppCompatActivity() {
             abrirPantallaLogin.putExtra("apellido", "Solar")
             abrirPantallaLogin.putExtra("acepto_TyC", false)
             startActivity(abrirPantallaLogin)
+            finish()
         }
     }
 }
