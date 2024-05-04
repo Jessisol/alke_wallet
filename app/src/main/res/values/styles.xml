@@ -10,4 +10,5 @@
         <item name="android:fontFamily">@font/jua</item>
         <item name="android:textColor">@color/negro</item>
     </style>
+
 </resources>

@@ -25,4 +25,18 @@
         <item name="android:textColor">@color/material_dynamic_neutral_variant70</item>
     </style>
 
+    <style name="campo_enviar_dinero" parent="campo_ingresar">
+        <item name="android:background">@drawable/rectangle_enviar_dinero</item>
+        <item name="android:textColor">@color/verde_enviar_dinero</item>
+    </style>
+
+    <style name="campo_ingresar_dinero" parent="campo_ingresar">
+        <item name="android:background">@drawable/rectangle_ingresar_dinero</item>
+        <item name="android:textColor">@color/azultexto</item>
+    </style>
+
+    <style name="campo_notas" parent="campo_ingresar">
+        <item name="android:background">@drawable/rectangle_notas</item>
+    </style>
+
 </resources>
