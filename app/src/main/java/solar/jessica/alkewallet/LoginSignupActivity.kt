@@ -21,7 +21,7 @@ class LoginSignupActivity : AppCompatActivity() {
         val tyc = intent.getBooleanExtra("acepto_TyC", false)
 
         //vamos a mostrar el dato en toast
-        Toast.makeText(this, "Hola $nombre $apellido -- Acepto los $tyc", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "Hola $nombre $apellido -- Acepto los $tyc", Toast.LENGTH_LONG).show()
 
          //vamos a declarar los botones para la integracion
         val botonYatienesCuenta = findViewById<TextView>(R.id.txt_login)
