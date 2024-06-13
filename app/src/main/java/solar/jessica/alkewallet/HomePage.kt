@@ -1,5 +1,6 @@
 package solar.jessica.alkewallet
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,8 +16,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import solar.jessica.alkewallet.data.network.RetrofitHelper
+import solar.jessica.alkewallet.data.network.user.UserService
+import solar.jessica.alkewallet.data.repository.TransactionImpl
+import solar.jessica.alkewallet.data.repository.UserImpl
 import solar.jessica.alkewallet.databinding.ActivityHomePageBinding
+import solar.jessica.alkewallet.domain.TransactionUseCase
+import solar.jessica.alkewallet.domain.UserUseCase
 import solar.jessica.alkewallet.home.viewmodel.HomeViewModel
+import solar.jessica.alkewallet.home.viewmodel.HomeViewModelFactory
+import solar.jessica.alkewallet.login.viewmodel.LoginViewModel
+import solar.jessica.alkewallet.login.viewmodel.LoginViewModelFactory
 import solar.jessica.alkewallet.model.Transaction
 
 class HomePage : AppCompatActivity() {
@@ -48,13 +59,32 @@ class HomePage : AppCompatActivity() {
             startActivity(Intent(this, SendMoney::class.java))
         }
 
-        //Iniciamos el viewmodel
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        val preferencias = getSharedPreferences("app", Context.MODE_PRIVATE)
+        //Obtenemos el token de sesión
+        val accessToken = preferencias.getString("accessToken", "")
+        if (accessToken != null) {
+            //Creamos el servicio del usuario
+            val servicio = RetrofitHelper.retrofit().create(UserService::class.java)
+            //Creamos el repositorio del usuario
+            val repositorioUser = UserImpl(servicio, accessToken, AlkeWalletApplication.database)
+            val repositorioTransaction = TransactionImpl(AlkeWalletApplication.database)
+            //Creamos el UseCase del usuario
+            val useCaseUser = UserUseCase(repositorioUser)
+            val useCaseTransaction = TransactionUseCase(repositorioTransaction)
+            //Iniciamos el viewmodel con un factory
+            viewModel = HomeViewModelFactory(useCaseUser, useCaseTransaction).create(HomeViewModel::class.java)
+        }
 
         //Observamos el usuario
         viewModel.user.observe(this) {
-            binding.textViewNombre.text = "Hola, " + it.name
-            binding.textViewBalance.text = "$" + it.balance
+            binding.textViewNombre.text = "Hola, " + it.first_name
+        }
+
+        //Observamos errores
+        viewModel.mensaje.observe(this) {
+            if (it != null) {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
         }
 
         //Observamos las transacciones
@@ -64,6 +94,18 @@ class HomePage : AppCompatActivity() {
             //Creamos un adaptador
             binding.recyclerView.adapter = TransactionsAdapter(it)
         }
+
+        //Observamos la información de la cuenta
+        viewModel.cuenta.observe(this) {
+            binding.textViewBalance.text = "$${it.money}"
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //Actualizar saldos y movimientos
+        viewModel.cargarCuenta()
+        viewModel.cargarTransacciones()
     }
 
     //Adaptador de transacciones, se crea con un listado de transacciones
@@ -91,15 +133,15 @@ class HomePage : AppCompatActivity() {
 
             fun bind(transaction: Transaction) {
                 //Utilizamos concept para distinguir si es recibe o envía dinero
-                val isPayment = transaction.concept == "+"
+                val isPayment = transaction.concept == "topup"
                 //Icono para distinguir transacción
                 imageViewConcept.setImageResource(if (isPayment) R.drawable.request_icon else R.drawable.send_icon)
                 //Nombre del usuario
-                textViewUserName.text = transaction.user.name
+                //textViewUserName.text = transaction.user.name
                 //Fecha de la transacción
                 textViewDate.text = transaction.date
                 //Monto de la transacción
-                textViewAmount.text = transaction.concept + "$" + transaction.amount
+                textViewAmount.text = "${if (isPayment) "+" else "-"}$${transaction.amount}"
             }
         }
 

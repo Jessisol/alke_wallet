@@ -10,7 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import solar.jessica.alkewallet.data.network.RetrofitHelper
+import solar.jessica.alkewallet.data.network.user.UserService
+import solar.jessica.alkewallet.data.repository.UserImpl
 import solar.jessica.alkewallet.databinding.ActivitySignupPageBinding
+import solar.jessica.alkewallet.domain.UserUseCase
+import solar.jessica.alkewallet.login.viewmodel.LoginViewModel
+import solar.jessica.alkewallet.login.viewmodel.LoginViewModelFactory
+import solar.jessica.alkewallet.signup.SignUpViewModelFactory
 import solar.jessica.alkewallet.signup.SignupViewModel
 
 class SignupPage : AppCompatActivity() {
@@ -26,7 +33,11 @@ class SignupPage : AppCompatActivity() {
         setContentView(binding.root)
 
         //Iniciamos el viewmodel
-        viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        val servicio = RetrofitHelper.retrofit().create(UserService::class.java)
+        val repositorio = UserImpl(servicio, null, AlkeWalletApplication.database)
+        val useCase = UserUseCase(repositorio)
+        viewModel = SignUpViewModelFactory(useCase).create(SignupViewModel::class.java)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -50,8 +61,9 @@ class SignupPage : AppCompatActivity() {
         //Observamos resultado del registro
         viewModel.resultSignup.observe(this) {
             if (it) { //Registro exitoso
-                //Ir al inicio
-                startActivity(Intent(this, HomePage::class.java))
+                //Ir al login
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
         }
         //Observamos errores

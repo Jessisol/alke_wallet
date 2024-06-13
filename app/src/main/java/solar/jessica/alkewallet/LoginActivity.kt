@@ -1,5 +1,6 @@
 package solar.jessica.alkewallet
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,8 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import solar.jessica.alkewallet.data.network.RetrofitHelper
+import solar.jessica.alkewallet.data.network.user.UserService
+import solar.jessica.alkewallet.data.repository.UserImpl
 import solar.jessica.alkewallet.databinding.ActivityLoginBinding
+import solar.jessica.alkewallet.domain.UserUseCase
 import solar.jessica.alkewallet.login.viewmodel.LoginViewModel
+import solar.jessica.alkewallet.login.viewmodel.LoginViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
     //Acceso a nuestras vistas
@@ -32,7 +38,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //Iniciamos el viewmodel
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        val servicio = RetrofitHelper.retrofit().create(UserService::class.java)
+        val repositorio = UserImpl(servicio, null, AlkeWalletApplication.database)
+        val useCase = UserUseCase(repositorio)
+        viewModel = LoginViewModelFactory(useCase).create(LoginViewModel::class.java)
 
         //Reemplazamos findViewById
         binding.buttonLogin.setOnClickListener {
@@ -48,9 +58,20 @@ class LoginActivity : AppCompatActivity() {
             if (it) {
                 //Ir al inicio
                 startActivity(Intent(this, HomePage::class.java))
-            } else {
-                //Correo y/o constraseña incorrectos
-                Toast.makeText(this, "Revise los datos", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+        //Observamos token
+        viewModel.accessToken.observe(this) {
+            if (it != null) {
+                val preferencias = getSharedPreferences("app", Context.MODE_PRIVATE).edit()
+                preferencias.putString("accessToken", it)
+                preferencias.apply()
+            }
+        }
+        viewModel.error.observe(this) {
+            if (it != null) {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -1,10 +1,12 @@
 package solar.jessica.alkewallet
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.SharedPreferencesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -41,11 +43,17 @@ class SplashScreenActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             delay(2000)
-            val abrirPantallaLogin = Intent(baseContext, LoginSignupActivity::class.java)
-            abrirPantallaLogin.putExtra("nombre", "Jessica")
-            abrirPantallaLogin.putExtra("apellido", "Solar")
-            abrirPantallaLogin.putExtra("acepto_TyC", false)
-            startActivity(abrirPantallaLogin)
+            //Obtenemos token de sesión si es que existe uno
+            val preferencias = getSharedPreferences("app", Context.MODE_PRIVATE)
+            if (preferencias.getString("accessToken", "") == "") {
+                //Sin token, solicitamos que inicie sesión para continuar
+                val abrirPantallaLogin = Intent(baseContext, LoginSignupActivity::class.java)
+                startActivity(abrirPantallaLogin)
+            } else {
+                //Con token, directo a la pantalla principal
+                val abrirHome = Intent(baseContext, HomePage::class.java)
+                startActivity(abrirHome)
+            }
             finish()
         }
     }
